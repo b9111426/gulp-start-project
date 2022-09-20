@@ -21,6 +21,10 @@ gulp.task('minify',()=>{
 		.pipe(browserSync.stream())
 })
 
+gulp.task('copyImage', function () {
+	return gulp.src('./app/asset/images/*')
+		.pipe(gulp.dest('./dist/images'))
+})
 
 /* --- SCSS 編譯 --- */
 gulp.task('scss', function () {
@@ -82,4 +86,4 @@ gulp.task('browser-sync', function () {
 })
 
 gulp.task('build',gulp.series('clean',gulp.parallel('minify','scss' ,'babel','imageMin')))
-gulp.task('default',gulp.parallel('minify','scss' ,'babel','watch','browser-sync'))
+gulp.task('default',gulp.parallel('minify','copyImage','scss' ,'babel','watch','browser-sync'))
